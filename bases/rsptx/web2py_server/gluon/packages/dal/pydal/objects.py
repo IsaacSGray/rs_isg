@@ -1045,6 +1045,8 @@ class Table(Serializable, BasicStorage):
                     value = long(value)
             elif field.type.startswith("list:string"):
                 value = bar_decode_string(value)
+            elif field.type.endswith("\n"): # THIS IS WHERE WE ADDED CODE THAT PROBABLY DOESN'T WORK
+                value.strip("\n")
             elif field.type.startswith(list_reference_s):
                 ref_table = field.type[len(list_reference_s) :].strip()
                 if id_map is not None:
